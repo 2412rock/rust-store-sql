@@ -26,3 +26,9 @@ BEGIN
     ADD TransactionFinalized BIT NOT NULL DEFAULT 0;
 END
 GO
+IF NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'Orders' AND COLUMN_NAME = 'TransactionFinalizedButPlayerDidNotGet')
+BEGIN
+    ALTER TABLE Orders
+    ADD TransactionFinalizedButPlayerDidNotGet BIT NOT NULL DEFAULT 0;
+END
+GO
